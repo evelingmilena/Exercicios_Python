@@ -33,3 +33,7 @@ $ git commit -m "mensagem explicativa do commit"
 
 Adicionar os commits à branch main do repositório remoto:
 $ git push origin main
+
+
+Comentário da Eveling:
+Fiz os meus primeiros push e pull e criei o meu primeiro repositório.
