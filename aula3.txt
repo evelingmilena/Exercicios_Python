@@ -1,0 +1,35 @@
+Autor: João Alberto.
+
+Ensinei a Eveling a usar o git e o github.
+
+Um repositório é uma forma de manter um controle de versões para um código ou projeto (contendo diversos códigos).
+Ele pode ser local (apenas no seu computador) ou remoto (exemplo Github, Bitbucket).
+Um repositório pode ter diversas branches, que são ramificações nas quais desenvolve-se diferentes features para um projeto. A branch principal chama-se main (antigamente chamava master).
+A cada nova versão dos códigos, realiza-se um commit, que é um ponto no qual o git vai registrar as mudanças feitas nos códigos.
+
+
+Comandos básicos:
+
+Inicializar repositório em uma pasta:
+$ git init
+
+Adicionar repositório remoto (ex.: github):
+$ git remote add <nome-referencia> <url>
+(normalmente, usamos origin como nome-referencia)
+
+Puxar arquivos da branch main de um repositório remoto:
+$ git pull origin main
+(sobrescreve os arquivos já existentes)
+
+Comandos corriqueiros:
+
+Adicionar arquivos para o commit:
+$ git add <arquivo>
+Se quiser adicionar tudo:
+$ git add .
+
+Realizar o commit (ou seja, falar para o git registrar as mudanças do arquivos desejados):
+$ git commit -m "mensagem explicativa do commit"
+
+Adicionar os commits à branch main do repositório remoto:
+$ git push origin main
