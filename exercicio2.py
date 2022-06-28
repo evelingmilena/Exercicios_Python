@@ -7,7 +7,7 @@ Esse aqui e o codigo para decomposicao em numeros primos.
 
 
 
-n = 100000000000
+n = 100
 i = 2
 j = n
 
