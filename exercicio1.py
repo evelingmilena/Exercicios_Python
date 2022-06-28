@@ -1,8 +1,7 @@
-#n = 10
 
 
-pot_max = 8
-expoente=1
+pot_max = 3
+expoente=0
 while expoente < pot_max:
     total = 0
     n = 10 ** expoente
@@ -13,5 +12,4 @@ while expoente < pot_max:
         total = total + fracao
         i = i + 1
     erro = total-1
-    #print("O erro de ponto flutuante e:",total-1)
     print("O erro de ponto flutuante para n=10**",expoente," e: ",erro)
