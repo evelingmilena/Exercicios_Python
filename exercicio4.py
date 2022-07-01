@@ -18,9 +18,14 @@ num = 20
 n = num
 
 for i in range(2,n):
-    if num%i == 0:
-        num = num/i
+    if num>1 and num%i == 0:
+        num = n/i
         print(i)
+        
+            
+            
+            
+        
    
         
         
