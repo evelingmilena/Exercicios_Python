@@ -1,6 +1,8 @@
 
 #Codigo de ponto flutuante com laco de repeticao for.
 
+print("Resultado do teste de erro de ponto flutuante")
+
 pot_max = 3
 
 for exp in range(pot_max):
@@ -14,12 +16,21 @@ for exp in range(pot_max):
 
 #Codigo de fatoracao em numeros primos utilizando laco de repeticao for.
 
-num = 20
+print("\nDecomposicao em fatores primos")
+
+num = 100
 n = num
 
+print("Decomposicao do numero",num)
+
 for i in range(2,n):
+<<<<<<< HEAD
     if num>1 and num%i == 0:
         num = n/i
+=======
+    while num%i == 0:
+        num = num/i
+>>>>>>> 4f67b86b8329a8abcdabbae6ee9229983d01e99c
         print(i)
         
             
