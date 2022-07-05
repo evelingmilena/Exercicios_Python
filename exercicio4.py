@@ -27,6 +27,11 @@ for i in range(2,n):
     while num%i == 0:
         num = num/i
         print(i)
+        
+            
+            
+            
+        
    
         
         
