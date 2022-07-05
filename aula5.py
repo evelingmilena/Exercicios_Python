@@ -70,7 +70,20 @@ print(lista1)
 print(2*lista2[2])
 
 
+
 # Tarefas:
 # fazer o for do plot do alpha
 # fazer a criacao de uma nova lista a partir de outra antiga da maneira simples
 # Descobrir o que a operacao de + faz com as listas 
+
+lista_numeros = [1,2,3,4,5]
+lista_copia = []
+print("A lista de numeros e:", lista_numeros)
+
+qtd_lista_numeros = len(lista_numeros)
+for i in range(qtd_lista_numeros):
+    lista_copia.append(lista_numeros[i])
+print("A copia da lista de numeros e:",lista_copia)
+
+lista_soma = lista_numeros + lista_copia
+print(lista_soma)

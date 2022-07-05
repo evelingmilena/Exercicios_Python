@@ -10,6 +10,7 @@ def e_psi(x,y,alpha):
     return a*(f**2)
     
 def rz_xy(r,z,k):
+    w = r**2/k**2
     x = (1/(2*k))*(np.sqrt(r**2+(z+k)**2)+np.sqrt(r**2+(z-k)**2))
     y = (1/(2*k))*(np.sqrt(r**2+(z+k)**2)-np.sqrt(r**2+(z-k)**2)) 
     
@@ -31,13 +32,21 @@ x,y = rz_xy(r,z,k)
 
 plt.figure(0)
 plt.xlabel("r/k")
-plt.ylabel(r"$e^\Psi$")
+plt.ylabel(r"$e^\Psi$",rotation=0)
+
 #plt.title("")
 
-for alpha_cent in range(20,45,5):
-    alpha = alpha_cent/100 
-    epsi = e_psi(x,y,alpha)
-    plt.plot(r,epsi,label=r"$\alpha = {0:.02f}$".format(alpha))
+#for alpha_cent in range(20,45,5):
+ #   alpha = alpha_cent/100 
+  #  epsi = e_psi(x,y,alpha)
+   # plt.plot(r,epsi,label=r"$\alpha = {0:.02f}$".format(alpha))
+
+alphas = [0,0.2,0.3,0.35,0.4]
+qtd_alphas = len(alphas)
+for i in range(qtd_alphas):
+    epsi = e_psi(x,y,alphas[i])
+    plt.plot(r,epsi,label=r"$\alpha = {0:.02f}$".format(alphas[i]))
+    
 
 plt.grid()
 plt.legend(loc="best")
