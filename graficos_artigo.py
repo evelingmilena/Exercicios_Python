@@ -42,10 +42,9 @@ plt.ylabel(r"$e^\Psi$",rotation=0)
    # plt.plot(r,epsi,label=r"$\alpha = {0:.02f}$".format(alpha))
 
 alphas = [0,0.2,0.3,0.35,0.4]
-qtd_alphas = len(alphas)
-for i in range(qtd_alphas):
-    epsi = e_psi(x,y,alphas[i])
-    plt.plot(r,epsi,label=r"$\alpha = {0:.02f}$".format(alphas[i]))
+for alpha in alphas:
+    epsi = e_psi(x,y,alpha)
+    plt.plot(r,epsi,label=r"$\alpha = {0:.02f}$".format(alpha))
     
 
 plt.grid()

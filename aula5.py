@@ -85,5 +85,9 @@ for i in range(qtd_lista_numeros):
     lista_copia.append(lista_numeros[i])
 print("A copia da lista de numeros e:",lista_copia)
 
+lista_copia[1]=10
+print("A lista de numeros e:", lista_numeros)
+print("A copia da lista de numeros e:",lista_copia)
+
 lista_soma = lista_numeros + lista_copia
 print(lista_soma)
