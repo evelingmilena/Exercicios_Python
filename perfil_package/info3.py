@@ -1,14 +1,9 @@
 def profissao_pessoa(profissao):
-    prof = profissao
-    return prof
+    return profissao
 
 def email_pessoa(email):
-    email1 = email
-    return email1
+    return email
     
-def telefone_pessoa(telefone):
-    tel = telefone
-    return tel
 
 
     

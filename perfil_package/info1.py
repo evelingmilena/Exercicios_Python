@@ -4,13 +4,11 @@ def nome_completo(nome, sobrenome):
     nomecompleto = nome1 + " " + nome2
     return nomecompleto
  
-def idade_pessoa(numero):
-    idade = numero
-    return idade
+def data_nascimento(dia,mes,ano):
+    data = dia + "/" + mes + "/" + ano
+    return data
       
-def sexo_pessoa(info):
-    sexo = info
-    return sexo
+
 
 
     
