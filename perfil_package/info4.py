@@ -10,13 +10,13 @@ def monta_perfil(nome,sobrenome,dia,mes,ano,logradouro,numero,bairro,cidade, est
     perfilcompleto = {"Nome":nomecompleto, "Data de Nascimento":datanascimento, "Endereco":endereco,"login":login}
     return perfilcompleto
     
-def altera_login(email,senha):
+def altera_login(email,senha,novoemail,novasenha):
     login = info3.acesso_usuario(email,senha)
-    email1 = "evelingmilena@gmail.com"
-    senha1 = "senhaatual"
-    login.update({"email":email1,"senha":senha1})
+    login["email"]= novoemail
+    login["senha"]= novasenha
     return login
 
     
 
-
+#a=[1,2,3]
+#a["email"] = novoemail

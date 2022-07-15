@@ -17,6 +17,8 @@ cidade = "Sao Paulo"
 estado = "SP"
 email = "evelingmilena@usp.br"
 senha = "12345678"
+novoemail = "evelingmilena@gmail.com"
+novasenha = "novasenha123"
 
 perfilcompleto = perfil.monta_perfil(nome,sobrenome,dia,mes,ano,logradouro,numero,bairro,cidade, estado,email,senha)
 
@@ -26,8 +28,10 @@ perfilcompleto = perfil.monta_perfil(nome,sobrenome,dia,mes,ano,logradouro,numer
 print("***** Perfil de Usuario *****\n")
 
 print(perfilcompleto)
-login = perfil.altera_login(email,senha)
-print(login)
+login = perfil.altera_login(email,senha,novoemail,novasenha)
+perfil_alterado = perfil.monta_perfil(nome,sobrenome,dia,mes,ano,logradouro,numero,bairro,cidade, estado,novoemail,novasenha)
+print("\n")
+print(perfil_alterado)
 
 
 
