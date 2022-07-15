@@ -9,3 +9,4 @@ novo modulo: montar o perfil da pessoa
 from perfil_package.info1 import *
 from perfil_package.info2 import *
 from perfil_package.info3 import *
+from perfil_package.info4 import *
