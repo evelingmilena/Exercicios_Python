@@ -28,7 +28,8 @@ r_max = 20
 N = 500
 r = np.linspace(r_min,r_max,N)/k
 z = 2*k
-alpha=0
+
+
 
 x,y = rz_xy(r,z,k)
 

@@ -18,15 +18,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 k = 1
-z = 2*k
-alpha = 0    
+z = 2*k   
 r = np.linspace(0,20,500)/k    
 
-x = rz_xy(r,z,k)
-y = rz_xy(r,z,k)
-epsi = e_psi(x,y,alpha)
+x,y = rz_xy(r,z,k)
 
-plt.plot(r,epsi)
+alphas = [0,0.2,0.3,0.35,0.4]
+
+for alpha in alphas:
+    epsi = e_psi(x,y,alpha)
+    plt.plot(r,epsi)
+    
 plt.show()
     
     
