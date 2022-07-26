@@ -7,6 +7,8 @@ import numpy as np
 
 print("oi tudo bem \nmeu nome e eveling")
 
+# ola um comentario pelo vi
+
 x = np.linspace(0.1, 100, 1000) #50
 y_exp = np.exp(x)
 y_log = np.log(x)
