@@ -51,7 +51,7 @@ plt.plot(x_circ, y_circ_sup, c="b")
 plt.plot(x_circ, y_circ_inf, c="b")
 plt.xlim(0,1)
 plt.ylim(0,1)
-plt.savefig("/home/bingo/Documents/Exercicios_Python/plots/circulo_monte_carlo.png")
+#plt.savefig("/home/bingo/Documents/Exercicios_Python/plots/circulo_monte_carlo.png")
 
 # hist, 3d, grid, polar
 
