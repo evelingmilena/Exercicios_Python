@@ -3,9 +3,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#Exercicio 1: Calcular pi
+#Exercicio 1: Estimar o valor de pi utilizando o metodo de Monte Carlo
 
-N = 1000000
+N = 10000
 r = 0.5
 
 x = np.random.rand(N)
@@ -24,7 +24,7 @@ plt.ylim(0,1)
 plt.show()
 
 cont = 0
-tentativas = 5
+tentativas = 100
 soma = 0
 lista_PI = []
 while cont < tentativas:
@@ -38,7 +38,7 @@ while cont < tentativas:
     PI = 4*N_dentro/N
     lista_PI.append(PI)
     cont = cont + 1
-    
+ 
 print(lista_PI)
 
 for i in lista_PI:
@@ -48,9 +48,10 @@ media = soma/tentativas
 
 print("A media dos valores de pi e:", media)
 
-diferenca = 0
+soma_diferenca = 0
 for i in lista_PI:
-    diferenca = diferenca + (i-media)**2
+    soma_diferenca = soma_diferenca + (i-media)**2
 
-desvio_padrao = np.sqrt(diferenca/len(lista_PI))
+desvio_padrao = np.sqrt(soma_diferenca/len(lista_PI))
 print("O desvio padrao e:", desvio_padrao)
+
