@@ -39,7 +39,7 @@ while cont < tentativas:
     lista_PI.append(PI)
     cont = cont + 1
  
-print(lista_PI)
+#print(lista_PI)
 
 for i in lista_PI:
     soma = soma + i
@@ -54,4 +54,14 @@ for i in lista_PI:
 
 desvio_padrao = np.sqrt(soma_diferenca/len(lista_PI))
 print("O desvio padrao e:", desvio_padrao)
+
+#print("O valor calculado de pi e {0:.2g}({0:.2g})".format(media, desvio_padrao))
+
+
+#Plotar o grafico de alguma funcao 
+
+
+
+# Fazer um for que aumenta o numero de pontos multiplicando por 10 e fazer um grafico da media de cada um desses
+
 
