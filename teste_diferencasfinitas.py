@@ -50,18 +50,18 @@ def diferencas_finitas(x0, y0, xf, yf, N):
     y = np.linalg.solve(A,b)
     return y
 
-y = diferencas_finitas(0, 0, 5, 50, 10)
+y = diferencas_finitas(0, 0, 5, 50, 301)
 
 #for i in range(len(y)):
  #   vetor_x = np.linspace(0, 1 , 9)
     #print("y(%f) = %f" %(vetor_x[i],y[i]))
 
 plt.figure(0)
-vetor_x = np.linspace(0.5, 4.5 , 9)
+vetor_x = np.linspace(0, 5 , 300)
 
 plt.plot(vetor_x,y)
 
-x = np.linspace(0.5, 4.5, 100)
+x = np.linspace(0, 5, 100)
 f = -(10/2)*x**2 + 35*x
 plt.plot(x,f)
 
