@@ -44,17 +44,16 @@ def diferencas_finitas(x0, y0, xf, yf, N):
     for i in range(1, dim-1):
         x = vetor_x[i]
         b[i] = r(x)
+        
     #resolucao do sistema linear Ay=b
-
     y = np.linalg.solve(A,b)
     return y
 
-y = diferencas_finitas(0, 0, 5, 50, 10)
+y = diferencas_finitas(0, 0, 5, 50, 100)
 
 for i in range(len(y)):
-    vetor_x = np.linspace(0, 5 , 10)
+    vetor_x = np.linspace(0, 5 , 100)
     print("y(%f) = %f" %(vetor_x[i],y[i]))
 
 plt.plot(vetor_x,y)
-
 plt.show()
