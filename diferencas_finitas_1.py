@@ -1,4 +1,4 @@
-"""
+ """
 Nesse codigo, vamos aprender a resolver um exemplo de EDO de segunda ordem pelo método
 de diferenças finitas, com condições de contorno constantes.
 """

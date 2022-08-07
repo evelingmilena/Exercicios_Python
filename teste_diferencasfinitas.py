@@ -17,52 +17,44 @@ def r(x):
 
 def diferencas_finitas(x0, y0, xf, yf, N):
     # variaveis iniciais
-    delta_x = (xf - x0)/N
-    vetor_x = np.linspace(x0 + delta_x, xf - delta_x, N-1)
-    dim_sist = N - 1
-    A = np.zeros((dim_sist, dim_sist))
-    b = np.zeros(dim_sist)
+    h = (xf - x0)/(N-1)
+    vetor_x = np.linspace(x0, xf, N)
+    dim = N 
+    A = np.zeros((dim, dim))
+    b = np.zeros(dim)
+    A[0][0] = 1
+    A[dim-1][dim-1] = 1
+    b[0] = y0
+    b[dim-1] = yf
 
     #Montagem da matriz A
-    for i in range(dim_sist):
+    for i in range(1, dim-1):
         x = vetor_x[i]
-        for j in range(dim_sist):
+        for j in range(dim):
             if i == j:
-                A[i][j] = 2 + q(x)*pow(delta_x,2)
-            elif i == (j+1):
-                A[i][j] = -1 - p(x)*delta_x/2
+                A[i][j] = - 2/(h**2) - q(x)
+            elif i == (j+1):  
+                A[i][j] = 1/(h**2) - p(x)/(2*h)
             elif i == (j-1):
-                A[i][j] = -1 + p(x)*delta_x/2
+                A[i][j] = 1/(h**2) + p(x)/(2*h)
             else:
                 A[i][j] = 0   
         
     #Montagem do vetor b
-    for i in range(dim_sist):
+    for i in range(1, dim-1):
         x = vetor_x[i]
-        if i == 0:
-            b[i] = (1 + p(x)*delta_x/2)*y0 - r(x)*pow(delta_x,2)
-        elif i == (dim_sist - 1):
-            b[i] = (1 - p(x)*delta_x/2)*yf - r(x)*pow(delta_x,2)
-        else:
-            b[i] = -r(x)*pow(delta_x,2)
-    #resolucao do sistema linear Ay+b
+        b[i] = r(x)
+    #resolucao do sistema linear Ay=b
 
     y = np.linalg.solve(A,b)
     return y
 
-y = diferencas_finitas(0, 0, 5, 50, 301)
+y = diferencas_finitas(0, 0, 5, 50, 10)
 
-#for i in range(len(y)):
- #   vetor_x = np.linspace(0, 1 , 9)
-    #print("y(%f) = %f" %(vetor_x[i],y[i]))
-
-plt.figure(0)
-vetor_x = np.linspace(0, 5 , 300)
+for i in range(len(y)):
+    vetor_x = np.linspace(0, 5 , 10)
+    print("y(%f) = %f" %(vetor_x[i],y[i]))
 
 plt.plot(vetor_x,y)
-
-x = np.linspace(0, 5, 100)
-f = -(10/2)*x**2 + 35*x
-plt.plot(x,f)
 
 plt.show()
