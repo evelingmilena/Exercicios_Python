@@ -1,19 +1,23 @@
 """
 Nesse codigo, vamos aprender a resolver um exemplo de EDO de segunda ordem pelo método
 de diferenças finitas, com condições de contorno constantes.
+A equação resolvida é do tipo y"(x) = p(x)y'(x) + q(x)y(x) + r(x)
+, com condições de contorno y(a) = alpha, y(b) = beta.
 """
 import numpy as np
 import matplotlib.pyplot as plt
 
 def p(x):
-    return 0
+    px = 0
+    return px
 
 def q(x):
-    return 0
+    qx = 0
+    return qx
 
 def r(x):
-    g = -10
-    return g
+    rx = - 100*(x-1)**2
+    return rx
 
 def diferencas_finitas(x0, y0, xf, yf, N):
     # variaveis iniciais
@@ -27,7 +31,7 @@ def diferencas_finitas(x0, y0, xf, yf, N):
     b[0] = y0
     b[dim-1] = yf
 
-    #Montagem da matriz A
+    #Montagem da matriz  tridimensional A
     for i in range(1, dim-1):
         x = vetor_x[i]
         for j in range(dim):
@@ -49,10 +53,10 @@ def diferencas_finitas(x0, y0, xf, yf, N):
     y = np.linalg.solve(A,b)
     return y
 
-y = diferencas_finitas(0, 0, 5, 50, 100)
+y = diferencas_finitas(0, 0, 1, 0, 11)
 
 for i in range(len(y)):
-    vetor_x = np.linspace(0, 5 , 100)
+    vetor_x = np.linspace(0, 1 , 11)
     print("y(%f) = %f" %(vetor_x[i],y[i]))
 
 plt.plot(vetor_x,y)
