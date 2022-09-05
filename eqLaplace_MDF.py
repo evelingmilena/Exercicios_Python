@@ -1,6 +1,7 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
-N = 50
+N = 30
 h = np.pi/N
 w = 1.7
 N_it = 10000
@@ -32,5 +33,43 @@ for i in range(N+1):
 print(matrizU)
 print("\nA matriz exata e:", matrizU_exata)
 print("\nErro quadrático é:", erro_quad)
+
+
+x  = range(0,N)
+y = range(0,N)
+X,Y = np.meshgrid(x,y) 
+def f():
+    z = matrizU[X,Y]  
+    return z;
+
+Z = f()
+
+def g():
+    r = matrizU_exata[X,Y]
+    return r
+    
+R = g()
+
+fig = plt.figure(figsize=(10,10))
+ax = plt.axes(projection='3d')
+ax.contour3D(X,Y,Z,50,cmap='binary')
+ax.plot_surface(X,Y,Z,rstride=1,cstride=1,cmap='autumn',edgecolor='none')
+ax.set_title('Equação de Laplace - Solução Numérica', fontsize=18)
+ax.set_xlabel('Eixo X',fontsize=15)
+ax.set_ylabel('Eixo Y',fontsize=15)
+ax.set_zlabel('Eixo Z',fontsize=15)
+ax.view_init(60,45)
+
+fig = plt.figure(figsize=(10,10))
+ax = plt.axes(projection='3d')
+ax.contour3D(X,Y,R,50,cmap='binary')
+ax.plot_surface(X,Y,R,rstride=1,cstride=1,cmap=  'autumn',edgecolor='none')
+ax.set_title('Equação de Laplace - Solução Exata', fontsize=18)
+ax.set_xlabel('Eixo X',fontsize=15)
+ax.set_ylabel('Eixo Y',fontsize=15)
+ax.set_zlabel('Eixo Z',fontsize=15)
+ax.view_init(60,45)
+
+plt.show()
 
 
