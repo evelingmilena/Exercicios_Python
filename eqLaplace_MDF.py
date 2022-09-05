@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 10
+N = 30
 h = np.pi/N
 w = 1.7
 N_it = 10000
