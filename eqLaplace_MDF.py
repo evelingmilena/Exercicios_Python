@@ -15,11 +15,11 @@ for j in range(N+1):
 
 #print(matrizU)
 
-#Método de Gauss-Seidel
+#Método SOR
 for k in range(N_it):
     for i in range(1,N):
         for j in range(1,N):
-            matrizU[i][j] = 0.25 * w * ( matrizU[i+1][j] + matrizU[i-1][j] + matrizU[i][j+1] + matrizU[i][j-1] ) + ( 1. - w ) * matrizU[i][j]
+           matrizU[i][j] = 0.25 * w * ( matrizU[i+1][j] + matrizU[i-1][j] + matrizU[i][j+1] + matrizU[i][j-1] ) + ( 1. - w ) * matrizU[i][j]
 
 #print(matrizU)    
 
@@ -35,8 +35,8 @@ print("\nA matriz exata e:", matrizU_exata)
 print("\nErro quadrático é:", erro_quad)
 
 
-x  = range(0,N)
-y = range(0,N)
+x  = range(0,N+1)
+y = range(0,N+1)
 X,Y = np.meshgrid(x,y) 
 def f():
     z = matrizU[X,Y]  

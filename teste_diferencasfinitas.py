@@ -16,7 +16,7 @@ def q(x):
     return qx
 
 def r(x):
-    rx = - 100*(x-1)**2
+    rx = - 10
     return rx
 
 def diferencas_finitas(x0, y0, xf, yf, N):
@@ -53,10 +53,10 @@ def diferencas_finitas(x0, y0, xf, yf, N):
     y = np.linalg.solve(A,b)
     return y
 
-y = diferencas_finitas(0, 0, 1, 0, 11)
+y = diferencas_finitas(0, 0, 5, 50, 20)
 
 for i in range(len(y)):
-    vetor_x = np.linspace(0, 1 , 11)
+    vetor_x = np.linspace(0, 5 , 20)
     print("y(%f) = %f" %(vetor_x[i],y[i]))
 
 plt.plot(vetor_x,y)
