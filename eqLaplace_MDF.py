@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 30
+N = 110
 h = np.pi/N
-w = 1.7
+w = 1.1
 N_it = 10000
 matrizU = np.zeros((N+1,N+1),float)
 matrizU_exata = np.zeros((N+1,N+1),float)

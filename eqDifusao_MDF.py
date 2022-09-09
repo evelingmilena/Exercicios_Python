@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 15
+N = 18
 h = 1/N
 N_it = 10000
 w = 1.1
