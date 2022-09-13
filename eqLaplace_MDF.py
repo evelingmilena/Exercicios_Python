@@ -30,9 +30,9 @@ for i in range(N+1):
         matrizU_erro[i][j] = matrizU_exata[i][j] - matrizU[i][j]
         erro_quad += matrizU_erro[i][j]**2
 		
-print(matrizU)
-print("\nA matriz exata e:", matrizU_exata)
-print("\nErro quadrático é:", erro_quad)
+#print(matrizU)
+#print("\nA matriz exata e:", matrizU_exata)
+print("\nA média do erro quadrático é:", erro_quad/N**2)
 
 
 x  = range(0,N+1)

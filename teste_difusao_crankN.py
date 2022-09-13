@@ -1,12 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 5
+N = 7
 M = 10
 hx = 1/N
-hy = 1/M
-N_it = 10000
-w = 1.8
+ht = 1/M
+N_it = 1000
+w = 1.2
 b = (1/(2*np.pi**2))*(N**2/M)
 
 
@@ -30,12 +30,12 @@ for k in range(N_it):
 erro_quad = 0.0
 for i in range(N+1):
     for j in range(M+1):
-        matriz_E[i][j] = (1/np.pi**2)*np.exp(-j*hy) * np.sin(np.pi*i*hx)
+        matriz_E[i][j] = (1/np.pi**2)*np.exp(-j*ht) * np.sin(np.pi*i*hx)
         matriz_e[i][j] = matriz_E[i][j] - matriz_N[i][j]
         erro_quad = erro_quad + matriz_e[i][j]**2
 
-print("A matriz numérica é:", matriz_N)
-print("\n\nO erro quadratico é:", erro_quad)
+#print("A matriz numérica é:", matriz_N)
+print("\n\n A média do erro quadratico é:", erro_quad/(N*M))
         
 #plot do gráfico 3D
 x  = range(0,N+1)

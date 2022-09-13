@@ -34,8 +34,8 @@ for i in range(N+1):
         matriz_e[i][j] = matriz_E[i][j] - matriz_N[i][j]
         erro_quad = erro_quad + matriz_e[i][j]**2
 
-print("A matriz numérica é:", matriz_N)
-print("\n\nO erro quadratico é:", erro_quad)
+#print("A matriz numérica é:", matriz_N)
+print("\n\nA média do erro quadratico é:", erro_quad/(N*M))
         
 #plot do gráfico 3D
 x  = range(0,N+1)
