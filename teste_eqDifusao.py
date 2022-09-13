@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 N = 10
 M = 22
 hx = 1/N
-hy = 1/M
+ht = 1/M
 N_it = 10000
 w = 1.2
 b = (1/np.pi**2)*(N**2/M)
@@ -30,7 +30,7 @@ for k in range(N_it):
 erro_quad = 0.0
 for i in range(N+1):
     for j in range(M+1):
-        matriz_E[i][j] = (1/np.pi**2)*np.exp(-j*hy) * np.sin(np.pi*i*hx)
+        matriz_E[i][j] = (1/np.pi**2)*np.exp(-j*ht) * np.sin(np.pi*i*hx)
         matriz_e[i][j] = matriz_E[i][j] - matriz_N[i][j]
         erro_quad = erro_quad + matriz_e[i][j]**2
 
