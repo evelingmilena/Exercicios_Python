@@ -8,8 +8,8 @@ x = []
 y = []
 z = []
 
-xN = np.arange(0,np.pi,0.01)
-yN = np.arange(0,np.pi,0.01)
+xN = np.arange(0,np.pi,0.1)
+yN = np.arange(0,np.pi,0.1)
 
 with open ('tabelaLaplace.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
@@ -21,5 +21,9 @@ f = interpolate.interp2d(x,y,z, kind = "linear")
 
 zN = f(xN,yN)
 
-plt.plot(zN)
+fig = plt.figure(figsize = (12,10))
+ax = plt.axes(projection='3d')
+
+X, Y = np.meshgrid(xN, yN)
+surf = ax.plot_surface(X, Y, zN, cmap = plt.cm.cividis)
 plt.show()
