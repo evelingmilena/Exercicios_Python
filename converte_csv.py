@@ -1,4 +1,4 @@
-nome_arquivo = "tabelaLaplace.csv"
+nome_arquivo = "tabelaPsi5.csv"
 novo_arquivo = "nova" + nome_arquivo
 
 with open(nome_arquivo, "r") as arquivo:

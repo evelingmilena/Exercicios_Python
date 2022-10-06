@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy import interpolate
 import csv
-import re
 
 x = []
 y = []
@@ -11,7 +10,7 @@ z = []
 xN = np.arange(0,np.pi,0.1)
 yN = np.arange(0,np.pi,0.1)
 
-with open ('tabelaLaplace.csv','r') as csvfile:
+with open ('novatabelaLaplace.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
         x.append(float(row[0]))
