@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-N = 110
+N = 50
 h = np.pi/N
 w = 1.1
 N_it = 10000

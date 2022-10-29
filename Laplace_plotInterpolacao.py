@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import interpolate
+from mpl_toolkits.mplot3d import Axes3D
 import csv
 
 x = []
@@ -20,7 +21,7 @@ f = interpolate.interp2d(x,y,z, kind = "linear")
 
 zN = f(xN,yN)
 
-fig = plt.figure(figsize = (12,10))
+fig = plt.figure(figsize = (10,10))
 ax = plt.axes(projection='3d')
 
 X, Y = np.meshgrid(xN, yN)
