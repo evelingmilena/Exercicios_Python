@@ -1,35 +1,30 @@
 from scipy.integrate import quad,dblquad
-from scipy.special import sph_harm,lambertw
+from scipy.special import sph_harm,lambertw,lpmv
 import numpy as np
+
 import matplotlib.pyplot as plt
 
-
-def integrand(x, z, y):
-    a = 2
-    b = 2
-    return a*x**2 + b*np.sin(y) + np.exp(z)
+a = 2
+b = 2
+c = 0
+def integrand(y,x,z):
+    func = (a*x**2 + b*np.sin(z) + np.exp(y))*c
+    return func
 
 integrand = np.vectorize(integrand)
 
-def integrated(y):
-    return dblquad(integrand, 0, 1, -2, 2, args=(y,))[0]
+def integrated(z):
+    return dblquad(integrand, 0, 1, -2, 2, args=(z,))[0]
 
 integrated = np.vectorize(integrated)
-y = np.linspace(-5,5,100)
+z = np.linspace(-5,5,100)
 
-final_integrated = integrated(y)
+final_integrated = integrated(z)
 
-j = np.linspace(-1,1,700)
-Y = sph_harm(0, 7, 0, np.arccos(j))*np.conjugate(sph_harm(0, 7, 0, np.arccos(j)))
-
-k = np.linspace(-5,5,100)
-l = lambertw(k)
-
-xN = 1 + 2*lambertw((1/2)*np.sqrt(np.exp(k-1)))
-plt.plot(k,xN)
-
-#plt.plot(y,final_integrated)
+plt.plot(z,final_integrated)
 plt.show()
+
+
 
 
 
