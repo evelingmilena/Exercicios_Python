@@ -6,16 +6,16 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 def wrapper_int_matriz_A(m,l,k,alpha,N1,N2):
-	def int_matriz_A(y,x):
+	def int_matriz_A(y,x_t):
 		'''
 		Definindo o integrando da matriz A
 		'''
 	   
-		a = (x**2)-(y**2) + (alpha**2)*(x**2-1)
-		b = 4*(alpha**2)*(x**2)*(1-(y**2))
-		c = 4*(alpha**2)*(y**2)*((x**2)-1)
-		d = (x**2)-(y**2) + (alpha**2)*((x**2)-1)**2
-		e = (1+(alpha**2))*((x**2)-(y**2))
+		a = (x_t**2)-(y**2) + (alpha**2)*(x_t**2-1)
+		b = 4*(alpha**2)*(x_t**2)*(1-(y**2))
+		c = 4*(alpha**2)*(y**2)*((x_t**2)-1)
+		d = (x_t**2)-(y**2) + (alpha**2)*((x_t**2)-1)**2
+		e = (1+(alpha**2))*((x_t**2)-(y**2))
 
 		f = ((a**2)+b)/(d**2-c)
 		g = ((a**2)+b)**2/(e**4)
@@ -28,15 +28,15 @@ def wrapper_int_matriz_A(m,l,k,alpha,N1,N2):
 
 
 def wrapper_int_matriz_b(m,l,k,alpha,N1,N2):
-	def int_matriz_b(y,x):
+	def int_matriz_b(y,x_t):
 		'''
 		Definindo o integrando da matriz b
 		'''
-		a = (x**2)-(y**2) + (alpha**2)*(x**2-1)
-		b = 4*(alpha**2)*(x**2)*(1-y**2)
-		c = 4*(alpha**2)*(y**2)*(x**2-1)
-		d = (x**2)-(y**2) + (alpha**2)*(x**2-1)**2
-		e = (1+alpha**2)*(x**2-y**2)
+		a = (x_t**2)-(y**2) + (alpha**2)*(x_t**2-1)
+		b = 4*(alpha**2)*(x_t**2)*(1-y**2)
+		c = 4*(alpha**2)*(y**2)*(x_t**2-1)
+		d = (x_t**2)-(y**2) + (alpha**2)*(x_t**2-1)**2
+		e = (1+alpha**2)*(x_t**2-y**2)
 
 		f = (a**2+b)/(d**2-c)
 		g = (a**2+b)**2/(e**4)
@@ -48,7 +48,7 @@ def wrapper_int_matriz_b(m,l,k,alpha,N1,N2):
 	return int_matriz_b
     
 
-def integrated(x,m,l,k,alpha,N1,N2):
+def integrated(x_t,m,l,k,alpha,N1,N2):
     '''
     Definindo a funcao que integra a matriz
     '''
@@ -57,36 +57,38 @@ def integrated(x,m,l,k,alpha,N1,N2):
     
     vec_int_matriz_A = np.vectorize(int_matriz_A)
     vec_init_matriz_v = np.vectorize(int_matriz_b)
-    return quad(vec_int_matriz_A, -1, 1, args=(x,))[0], quad(vec_init_matriz_v, -1, 1, args=(x,))[0]
+    return quad(vec_int_matriz_A, -1, 1, args=(x_t,))[0], quad(vec_init_matriz_v, -1, 1, args=(x_t,))[0]
 
 
-def init_matriz_B(x, matriz_A, matriz_b):
-    veff = l*(l+1)+(2/(x+1))
-    matriz_B = ((x-1)/(x+1)**3)*(matriz_A*veff+(m**2)*matriz_b)
+def init_matriz_B(x_t, matriz_A, matriz_b):
+    veff = l*(l+1)+(2/(x_t+1))
+    matriz_B = ((x_t-1)/(x_t+1)**3)*(matriz_A*veff+(m**2)*matriz_b)
     return matriz_B
     
 
 #Definindo as constantes
-m = 1
-l = 2
+m = 2
+l = 4
 k = 2
-#alpha = 0.2
+alpha = 0.2
 
-x = np.linspace(1.1,15,1000)
+x = np.linspace(-2,10,1000)
+x_t = np.array((1+2*lambertw((0.5)*np.sqrt(np.exp(x-1)))),dtype=float)
 integrated = np.vectorize(integrated)
 
-"""
+
+
 plt.figure(0)
-plt.title("Matriz A, com \u03B1=0.2, l=k=4 e m variando.")
+plt.title("Matriz A, com \u03B1=0.2, l=4, k=2 e m variando.")
 plt.xlabel("x")
 plt.ylabel("A(x)")
-for m in range(-2,3):
+for m in range(-k,k+1):
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
     plt.plot(x, matriz_A, label="m = {0:.0f}".format(m)) 
 plt.legend(loc="best")
-"""
+
 """
 plt.figure(0)
 plt.title("Matriz A, com l=k=4, m=2 e \u03B1 variando.")
@@ -96,8 +98,8 @@ alphas = [0,0.1,0.2,0.3]
 for alpha in alphas:
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
-    plt.plot(x, matriz_A, label="\u03B1={0:.01f}".format(alpha)) 
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
+    plt.plot(x, matriz_A, label="\u03B1={0:.01f}".format(alpha))
 plt.legend(loc="best")
 """
 """
@@ -105,11 +107,12 @@ plt.figure(0)
 plt.title("Matriz A, com m=0, \u03B1=0.2 e l e k variando.")
 plt.xlabel("x")
 plt.ylabel("A(x)")
-for l,k in zip(range(1,5),range(1,5)): #laço para plotar a matriz com l=k variando e m fixo
+for l,k in zip(range(1,6),range(1,6)): #laço para plotar a matriz com l=k variando e m fixo
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
-    plt.plot(x, matriz_A, label="l=k={0:.0f}".format(l)) 
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
+    plt.plot(x, matriz_A, label="l=k={0:.0f}".format(l))
+    plt.ylim([0,4])
 plt.legend(loc="best")
 """
 
@@ -121,7 +124,7 @@ plt.ylabel("b(x)")
 for m in range(0,l+1):
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
     plt.plot(x, matriz_b, label="m = {0:.0f}".format(m)) 
 plt.legend(loc="best")
 """
@@ -133,7 +136,7 @@ plt.ylabel("b(x)")
 for m in range(-k,k+1):
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
     plt.plot(x, matriz_b, label="m = {0:.0f}".format(m)) 
 plt.legend(loc="best")
 """
@@ -146,37 +149,38 @@ alphas = [0,0.1,0.2,0.3]
 for alpha in alphas:
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
     plt.plot(x, matriz_b, label="\u03B1={0:.01f}".format(alpha)) 
 plt.legend(loc="best")
 """
 """
 plt.figure(2)
-plt.title("Matriz B, com \u03B1=0.2, l=4, m=1 e k variando")
+plt.title("Matriz B, com \u03B1=0.2, l=k=2 e m variando")
 plt.xlabel("x")
 plt.ylabel("B(x)")
-for k in range(1,5):
+for m in range(-l,l+1):
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
-    matriz_B = init_matriz_B(x, matriz_A, matriz_b)
-    plt.plot(x, matriz_B, label="k={0:.0f}".format(k)) 
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
+    matriz_B = init_matriz_B(x_t, matriz_A, matriz_b)
+    plt.plot(x, matriz_B, label="m={0:.0f}".format(m)) 
 plt.legend(loc="best")
 """
 """
 plt.figure(0)
-plt.title("Matriz B, com m=0, \u03B1=0.2 e l e k variando.")
+plt.title("Matriz B, com m=2, \u03B1=0.2 e l e k variando.")
 plt.xlabel("x")
 plt.ylabel("B(x)")
-for l,k in zip(range(1,5),range(1,5)): #laço para plotar a matriz com l=k variando e m fixo
+for l,k in zip(range(2,7),range(2,7)): #laço para plotar a matriz com l=k variando e m fixo
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
-    matriz_B = init_matriz_B(x, matriz_A, matriz_b)
-    plt.plot(x, matriz_B, label="l=k= {0:.0f}".format(l)) 
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
+    matriz_B = init_matriz_B(x_t, matriz_A, matriz_b)
+    plt.plot(x, matriz_B, label="l=k= {0:.0f}".format(l))
+    plt.ylim([0,3])
 plt.legend(loc="best")
 """
-
+"""
 plt.figure(0)
 plt.title("Matriz B, com m=1, l=k=2 e \u03B1=0.2 variando.")
 plt.xlabel("x")
@@ -185,11 +189,12 @@ alphas = [0,0.1,0.2]
 for alpha in alphas: #laço para plotar a matriz com l=k fixos,m fixo e alpha variando
     N1 = np.sqrt(((2*l+1)/(4*np.pi))*((np.math.factorial(l-m))/(np.math.factorial(l+m))))
     N2 = np.sqrt(((2*k+1)/(4*np.pi))*((np.math.factorial(k-m))/(np.math.factorial(k+m))))
-    matriz_A, matriz_b = integrated(x,m,l,k,alpha,N1,N2)
-    matriz_B = init_matriz_B(x, matriz_A, matriz_b)
-    plt.plot(x, matriz_B, label="\u03B1={0:.01f}".format(alpha)) 
+    matriz_A, matriz_b = integrated(x_t,m,l,k,alpha,N1,N2)
+    matriz_B = init_matriz_B(x_t, matriz_A, matriz_b)
+    plt.plot(x, matriz_B, label="\u03B1={0:.01f}".format(alpha))
+    plt.ylim([0,0.4])
 plt.legend(loc="best")
-
+"""
 plt.show()
 
 
