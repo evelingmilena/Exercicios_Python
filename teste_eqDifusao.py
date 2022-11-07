@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 N = 10
-M = 22
+M = 10
 hx = 1/N
 ht = 1/M
 N_it = 10000
@@ -24,7 +25,9 @@ for i in range(N+1):
 for k in range(N_it):
     for i in range(1,N):
         for j in range(1,M):
-            matriz_N[i][j] = w *((1 + 2.*b)* matriz_N[i][j+1] - b* (matriz_N[i+1][j+1] + matriz_N[i-1][j+1])) + (1. - w) * matriz_N[i][j]
+            #matriz_N[i][j] = w *((1 + 2.*b)* matriz_N[i][j+1] - b* (matriz_N[i+1][j+1] + matriz_N[i-1][j+1])) + (1. - w) * matriz_N[i][j]
+            matriz_N[i][j] = ((1 + 2.*b)* matriz_N[i][j+1] - b* (matriz_N[i+1][j+1] + matriz_N[i-1][j+1])) 
+
             
 #montando a matriz exata e o erro
 erro_quad = 0.0
@@ -72,6 +75,7 @@ ax.set_xlabel('Eixo X',fontsize=15)
 ax.set_ylabel('Eixo Y',fontsize=15)
 ax.set_zlabel('Eixo Z',fontsize=15)
 ax.view_init(60,45)
+
 
 plt.show()
 
