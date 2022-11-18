@@ -2,34 +2,35 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def solve(y_start,t_start,t_end,N_steps):
-    y = np.zeros(N_steps + 1)
+def solve(y1_start, y2_start, t_start,t_end,N_steps):
+    y = np.zeros((2, N_steps + 1))
     ht = (t_end - t_start)/N_steps
     t = np.linspace(t_start,t_end,N_steps + 1)
-    I = np.identity(2)
-    
-    def matrix_A(a,b,c,d):
-        A = np.array([[a,b],[c,d]])
-    
+    I = np.eye(2)
 
-    def vector_B(a,b):
-        B = np.array([a,b])
+    matrixA = np.array([[-2,1],[1,-2]])
+    vectorB = np.array([2*np.sin(t), 2*(np.cos(t)-np.sin(t))])
     
-
-    matrixA = matrix_A(-2,1,1,-2)
+    y[:,0] = [y1_start, y2_start]
     
     for i in range(0,N_steps):
-        vectorB[i] = vector_B(2*np.sin(t[i]),2*np.cos(t[i]))
-        y[0] = y_start
-        y[i+1] = np.linalg.inv(1-ht*matrixA).dot(y[i]+ht*vectorB[i+1])
+        y[:,i+1] = np.linalg.inv(I-ht*matrixA)@(y[:,i]+ht*vectorB[:,i+1]) # ou np.dot(A,B)
+
     return y
 
-y1 = solve(2,0,30,200)
-y2 = solve(3,0,30,200)
+y1_start = 2  
+y2_start = 3
+t_start = 0
+t_end = 30
+N_steps = 200
+
+y = solve(y1_start, y2_start, t_start,t_end,N_steps)
 
 t = np.linspace(t_start,t_end,N_steps + 1)
 
-plt.plot(t,y1)
+plt.figure(0)
+plt.plot(t,y[0])
+plt.plot(t,y[1])
 plt.show()
     
 
