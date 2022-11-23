@@ -35,25 +35,27 @@ def euler_explicito(y0, t0, h, N, f):
 def g(t, y):
     return y
     
-f0 = 1
-x0 = 0
-d = 0.1
-N = 100
+    
+if __name__=="__main__":
+    f0 = 1
+    x0 = 0
+    d = 0.1
+    N = 100
 
-x_EE, f_EE = euler_explicito(f0, x0, d, N, g)
-x_RG4, f_RG4 = RK4(f0, x0, d, N, g)
+    x_EE, f_EE = euler_explicito(f0, x0, d, N, g)
+    x_RG4, f_RG4 = RK4(f0, x0, d, N, g)
 
-plt.figure(0)
-plt.title("Solucao")
-plt.plot(x_EE, f_EE, label="Euler Explicito")
-plt.plot(x_RG4, f_RG4, label="Runge-Kutta 4")
-plt.plot(x_RG4, np.exp(x_RG4), label="Analitico")
-plt.legend()
+    plt.figure(0)
+    plt.title("Solucao")
+    plt.plot(x_EE, f_EE, label="Euler Explicito")
+    plt.plot(x_RG4, f_RG4, label="Runge-Kutta 4")
+    plt.plot(x_RG4, np.exp(x_RG4), label="Analitico")
+    plt.legend()
 
-plt.figure(1)
-plt.title("Erro")
-plt.plot(x_EE, f_EE-np.exp(x_RG4), label="Euler Explicito")
-plt.plot(x_RG4, f_RG4-np.exp(x_RG4), label="Runge-Kutta 4")
-plt.legend()
-plt.show()
+    plt.figure(1)
+    plt.title("Erro")
+    plt.plot(x_EE, f_EE-np.exp(x_RG4), label="Euler Explicito")
+    plt.plot(x_RG4, f_RG4-np.exp(x_RG4), label="Runge-Kutta 4")
+    plt.legend()
+    plt.show()
 
