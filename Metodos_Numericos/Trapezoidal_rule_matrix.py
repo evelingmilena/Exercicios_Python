@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def solve(y1_start,y2_start,t_start,t_end,N_steps):
+def trapezoidal_rule(y1_start,y2_start,t_start,t_end,N_steps):
     ht = (t_end - t_start)/N_steps
     t = np.linspace(t_start,t_end,N_steps + 1)
     I = np.eye(2)
@@ -31,7 +31,7 @@ t_start = 0
 t_end = 30
 
 t = np.linspace(t_start,t_end,N_steps + 1)
-y = solve(y1_start,y2_start,t_start,t_end,N_steps)
+y = trapezoidal_rule(y1_start,y2_start,t_start,t_end,N_steps)
 y_exact = exact_solution(t)
 
 plt.figure(0)

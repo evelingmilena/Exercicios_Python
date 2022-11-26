@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def solve(y1_start,y2_start,t_start,t_end,N_steps):
+def Forward_Euler(y1_start,y2_start,t_start,t_end,N_steps):
     ht = (t_end - t_start)/N_steps
     y = np.zeros((2,N_steps + 1))
     t = np.linspace(t_start,t_end,N_steps + 1)
@@ -30,11 +30,11 @@ t_end = 30
 
 t = np.linspace(t_start,t_end,N_steps + 1)
 
-y = solve(y1_start,y2_start,t_start,t_end,N_steps)
+y = Forward_Euler(y1_start,y2_start,t_start,t_end,N_steps)
 y_exact = exact_solution(t)
 
 plt.figure(0)
-plt.plot(t,y[0],'co--',label='Approximate')
+plt.plot(t,y[0],'bo--',label='Approximate')
 plt.plot(t,y_exact[0],'k',label='Exact')
 plt.grid()
 plt.xlabel('t')
@@ -44,7 +44,7 @@ plt.title('Approximate and Exact Solution \
 for f\u2081(t) - Forward Euler method')
 
 plt.figure(1)
-plt.plot(t,y[1],'co--',label='Approximate')
+plt.plot(t,y[1],'bo--',label='Approximate')
 plt.plot(t,y_exact[1],'k',label='Exact')
 plt.grid()
 plt.xlabel('t')

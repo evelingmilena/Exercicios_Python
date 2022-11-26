@@ -42,7 +42,7 @@ plt.ylabel('f\u2081(t)')
 plt.grid()
 plt.legend(loc='best')
 plt.title('Approximate and Exact Solution \
-for Simple ODE - Backward Euler method')
+for f\u2081(t) - Backward Euler method')
 
 plt.figure(1)
 plt.plot(t,y[1],'mo--',label='Approximate')
