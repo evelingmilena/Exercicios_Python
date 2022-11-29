@@ -13,6 +13,7 @@ l = 1
 xmin = -5
 xmax = 5
 hxtilde = (xmax-xmin)/N
+xtilde0=2
 
 # Definindo a matriz
 U = np.zeros((N+1,N+1),float)
@@ -22,12 +23,12 @@ t = np.linspace(t0,tf,N+1)
 
 # Condicoes Iniciais
 for i in range(N+1):
+    gauss = np.sqrt(2/np.pi)*np.exp(-(xtilde[i]-xtilde0)**2)
     # U(0)
-    U[i][0] = np.sqrt(2/np.pi)*np.exp(-xtilde[i]**2)
+    U[i][0] = np.sqrt(2/np.pi)*gauss
     #dU/dt(0)
-    U[i][1] = np.sqrt(2/np.pi)*np.exp(-xtilde[i]**2) + \
-              (0.5)*(ht**2)*(np.sqrt(2/np.pi)*np.exp(-xtilde[i]**2)*(4*xtilde[i]**2-2) - \
-              (l*(l+1)+2/(x[i]+1))*((x[i]-1)/(x[i]+1)**3)*np.sqrt(2/np.pi)*np.exp(-xtilde[i]**2))
+    U[i][1] = gauss + (0.5)*(ht**2)*gauss*(4*xtilde[i]**2-2) - \
+              (l*(l+1)+2/(x[i]+1))*((x[i]-1)/(x[i]+1)**3)*gauss
   
 # Diferencas Finitas
 for i in range(0,N):
