@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 # Parâmetros 
-N = 5000
+N = 1000
 t_start = 0
 t_end = 500
 ht = (t_end-t_start)/(N)
