@@ -39,16 +39,17 @@ for j in range(0,N):
 
 # Plots
 
-fig_path = "/home/bingo/Documents/Exercicios_Python/Trabalho/figures/"
+#fig_path = "/home/bingo/Documents/Exercicios_Python/Trabalho/figures/"
+fig_path = "C:/Users/eveli/Eveling/Exercicios_Python/Trabalho/Plots/"
 
 plt.figure(1)
 for i in range(10):
-    plt.plot(t, U[i*N//10,:], label=r"$\tilde{x}$=".format(x[i*N//10]))
+    plt.plot(t, U[i*N//10,:])
     
 plt.xlabel("Time")
 plt.ylabel("U(t)")
 plt.title("Spatial Cuts")
-plt.savefig(fig_path + "N{}_spatial_cut.png".format(i))
+plt.savefig(fig_path + "grafico1.png")
 
 TT, XX = np.meshgrid(t,xtilde)
 
@@ -58,4 +59,4 @@ ax.set_ylabel(r"$\tilde{x}$")
 ax.set_xlabel("time")
 surf = ax.imshow(U)
 fig.colorbar(surf)
-plt.savefig(fig_path + "Plot - 2D")
+plt.savefig(fig_path + "grafico2.png")
